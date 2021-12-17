@@ -4,7 +4,7 @@ from .serializers import ProductSerializer
 from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import Product
+from products.models import Product
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -32,13 +32,14 @@ def productDetail(request, pk):
 
 
 @api_view(['POST'])
-def addProduct(request, pk):
+def addProduct(request):
     product_serializer=ProductSerializer(data=request.data)
 
     if product_serializer.is_valid():
         product_serializer.save()
+        return Response(product_serializer.data)
 
-    return Response(product_serializer.data)
+    return Response(product_serializer.errors)
 
 
 @api_view(['POST'])

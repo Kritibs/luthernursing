@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'products.apps.ProductsConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,9 +141,16 @@ STATICFILES_DIRS= (os.path.join(BASE_DIR, 'static'),)
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# CORS_ORIGINS_WHITELIST=[
-#         "http://localhost:3000/",
 CORS_ALLOWED_ORIGINS = [
 "http://localhost:3000",
 ]
-#         ]
+CORS_ORIGIN_WHITELIST=[
+        "http://localhost:3000/products/products_add",
+        "http://localhost:3000",
+        ]
+AUTH_USER_MODEL = 'accounts.MyUser'
+
+AUTHENTICATION_BACKENDS=(
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backend.MyBackend',
+)

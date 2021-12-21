@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React  from 'react';
 import ProductCard from './ProductCard.js';
 import Grid from '@mui/material/Grid';
 import { Outlet } from 'react-router-dom';

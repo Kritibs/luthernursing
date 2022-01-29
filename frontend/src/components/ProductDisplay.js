@@ -2,6 +2,8 @@ import React  from 'react';
 import ProductCard from './ProductCard.js';
 import Grid from '@mui/material/Grid';
 import { Outlet } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle, faCheckSquare} from '@fortawesome/free-solid-svg-icons';
 
 class ProductDisplay extends React.Component {
 	constructor(props){
@@ -40,7 +42,11 @@ class ProductDisplay extends React.Component {
 			/>
 			</Grid> )}
 		</Grid>
+<FontAwesomeIcon icon={	faPlusCircle} size="4x" style={{ color: "#1976d2", position: "absolute", bottom: "0", right: "0", paddingRight :"10px", marginRight:"10px", marginBottom: "10px", paddingBottom :"10px"}}/>
 		</div>); 
+		<div>
+			<h1>hi</h1>
+			</div>
 }
 }
 export default ProductDisplay;

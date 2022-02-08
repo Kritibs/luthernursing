@@ -1,7 +1,9 @@
 from rest_framework import serializers
-from .models import MyUser
+from djoser.serializers import UserCreateSerializer
+from django.contrib.auth import get_user_model
+User=get_user_model()
 
-class AccountSerializer(serializers.ModelSerializer):
+class UserCreateSerializer(UserCreateSerializer):
     class Meta:
-        model=MyUser
+        model=User
         fields='__all__'

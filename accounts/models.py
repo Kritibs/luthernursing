@@ -1,12 +1,12 @@
 from django.db import models
 
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, first_name, last_name, year, password=None):
+    def create_user(self, email, first_name, last_name, year, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -16,7 +16,6 @@ class MyUserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            date_of_birth=date_of_birth,
             first_name=first_name,
             last_name=last_name,
             year=year,
@@ -27,14 +26,13 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, date_of_birth, first_name, last_name, year, password=None):
+    def create_superuser(self, email,first_name, last_name, year, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
         user = self.create_user(
             email,
-            date_of_birth=date_of_birth,
             first_name=first_name,
             last_name=last_name,
             year=year,
@@ -45,7 +43,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class MyUser(AbstractBaseUser):
+class MyUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -53,7 +51,6 @@ class MyUser(AbstractBaseUser):
     )
     first_name=models.CharField(max_length=100)
     last_name=models.CharField(max_length=100)
-    date_of_birth = models.DateField()
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     FRESHMAN = 'FR'
@@ -77,7 +74,7 @@ class MyUser(AbstractBaseUser):
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth', 'first_name', 'last_name', 'year']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'year']
 
     def __str__(self):
         return self.email

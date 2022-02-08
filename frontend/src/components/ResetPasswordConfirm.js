@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Success from './Success.js';
 import axios from 'axios';
-
 var data={};
 const year_options = [
 	"FR",
@@ -15,7 +14,8 @@ const year_options = [
 	"SR",
 	"GR",
 ];
-class SignUp extends React.Component {
+
+class ResetPasswordConfirm extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
@@ -219,5 +219,4 @@ class SignUp extends React.Component {
 		}
 	}
 }
-export default SignUp;
-
+export default ResetPasswordConfirm;

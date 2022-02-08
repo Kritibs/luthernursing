@@ -15,7 +15,7 @@ const year_options = [
 	"SR",
 	"GR",
 ];
-class SignUp extends React.Component {
+class Activate extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
@@ -219,5 +219,4 @@ class SignUp extends React.Component {
 		}
 	}
 }
-export default SignUp;
-
+export default Activate;

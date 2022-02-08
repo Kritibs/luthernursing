@@ -12,12 +12,16 @@ import MenuItem from '@mui/material/MenuItem';
 import { Toolbar } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserPlus} from '@fortawesome/free-solid-svg-icons';
+import { faUsers} from '@fortawesome/free-solid-svg-icons';
+import {connect} from 'react-redux';
+import {logout } from '../actions/auth';
 
 const pages = ['Home', 'Products', 'Students'];
-const settings = ['Profile', 'Logout'];
 var link='';
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({logout,isAuthenticated}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -110,8 +114,8 @@ const ResponsiveAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="../../../media/images/king.jpeg" />
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1}}>
+		<FontAwesomeIcon icon={	faUsers} size="1x" style={{ color: "white", position: "absolute"}}/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -130,16 +134,29 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+                  <Typography textAlign="center">
+		  {!isAuthenticated ?
+			  <React.Fragment>
+                <MenuItem onClick={handleCloseNavMenu}>
+		      <Link to="/SignUp">SignUp</Link>
+</MenuItem>
+                    <MenuItem onClick={handleCloseNavMenu}><Link to="/LogIn">LogIn</Link></MenuItem>
+		      
+			  </React.Fragment>
+			:
+                    <MenuItem onClick={handleCloseNavMenu}>
+			  <a href='#' onClick={logout}>Logout</a>
+</MenuItem>}
+
+		      </Typography>
+	</Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToProps, {logout}) (ResponsiveAppBar);

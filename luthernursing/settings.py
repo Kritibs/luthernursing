@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'djoser',
     'rest_framework',
+    'rest_framework_jwt',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +65,7 @@ ROOT_URLCONF = 'luthernursing.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,8 +137,9 @@ MEDIA_URL='/media/'
 
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS= (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS= (os.path.join(BASE_DIR, 'build/static'),)
 
+STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -145,7 +148,8 @@ CORS_ALLOWED_ORIGINS = [
 "http://localhost:3000",
 ]
 CORS_ORIGIN_WHITELIST=[
-        "http://localhost:3000/products/products_add",
+        "http://localhost:3000/add-products",
+        "http://localhost:3000/add-accounts",
         "http://localhost:3000",
         ]
 AUTH_USER_MODEL = 'accounts.MyUser'
@@ -154,3 +158,51 @@ AUTHENTICATION_BACKENDS=(
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backend.MyBackend',
 )
+
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='luthernursingclub@gmail.com'
+EMAIL_HOST_PASSWORD = 'ykskkuuzgozskpwm'
+EMAIL_USE_TLS=True
+
+
+DJOSER={
+        'LOGIN_FIELD' : 'email',
+        'USER_CREATE_PASSWORD_RETYPE':True,
+        'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
+        'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
+        'SEND_CONFIRMATION_EMAIL':True,
+        'SET_PASSWORD_RETYPE':True,
+        'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}',
+        'ACTIVATION_URL':'activate/{uid}/{token}',
+        'SEND_ACTIVATION_EMAIL':True,
+        'SERIALIZERS': {
+
+            'user_create':'accounts.serializers.UserCreateSerializer',
+            'user': 'accounts.serializers.UserCreateSerializer',
+            'user_delete':'djoser.serializers.UserDeleteSerializer',
+        }
+
+        }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
+
+JWT_AUTH = {
+    # Authorization:Token xxx
+    'JWT_AUTH_HEADER_PREFIX': 'Token',
+}

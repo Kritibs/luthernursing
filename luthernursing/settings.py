@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+from datetime import timedelta
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -175,6 +176,7 @@ DJOSER={
         'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
         'SEND_CONFIRMATION_EMAIL':True,
         'SET_PASSWORD_RETYPE':True,
+        'PASSWORD_RESET_CONFIRM_RETYPE': True,
         'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}',
         'ACTIVATION_URL':'activate/{uid}/{token}',
         'SEND_ACTIVATION_EMAIL':True,
@@ -183,6 +185,8 @@ DJOSER={
             'user_create':'accounts.serializers.UserCreateSerializer',
             'user': 'accounts.serializers.UserCreateSerializer',
             'user_delete':'djoser.serializers.UserDeleteSerializer',
+            'password_reset_confirm': 'djoser.serializers.PasswordResetConfirmSerializer',
+            'password_reset_confirm_retype': 'djoser.serializers.PasswordResetConfirmRetypeSerializer',
         }
 
         }
@@ -194,12 +198,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ),
 }
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 JWT_AUTH = {

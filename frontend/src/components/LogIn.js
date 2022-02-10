@@ -8,7 +8,7 @@ import Success from './Success.js';
 import axios from 'axios';
 import {Link, Navigate} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {login, checkAuthenticated, load_user} from '../actions/auth';
+import {login} from '../actions/auth';
 
 
 let data={};
@@ -27,12 +27,6 @@ class LogIn extends React.Component {
 		this.handleChange=this.handleChange.bind(this)
 		this.handleSubmit=this.handleSubmit.bind(this)
 	}
-	componentDidMount(){
-		this.props.checkAuthenticated()
-	}
-
-
-	
 
 	handleChange= name => e => {
 		data[name]=e.target.value
@@ -44,16 +38,15 @@ class LogIn extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault()
 		this.props.login(this.state.activeItem.email,this.state.activeItem.password);
-		console.log(this.props.isAuthenticated)
+	}
+
+
+	render(){
 	if (this.props.isAuthenticated){
 
 		window.location.href='http://localhost:3000/Home'
 		
 	}
-	}
-
-
-	render(){
 				return (
 					<Grid
 					container
@@ -98,10 +91,10 @@ class LogIn extends React.Component {
 					</div>
 					<div>
 					<p className= 'mt-3'>
-					Don't have an account? <Link to='SignUp'> Sign Up</Link>
+					Don't have an account? <Link to='/SignUp'> Sign Up</Link>
 					</p>
 					<p className= 'mt-3'>
-					Forgot your password?<Link to='ResetPassword'> Reset Password</Link>
+					Forgot your password?<Link to='/ResetPassword'> Reset Password</Link>
 					</p>
 					</div>
 					</Box>
@@ -112,5 +105,5 @@ class LogIn extends React.Component {
 const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated
 });
-export default connect(mapStateToProps, {login,checkAuthenticated,load_user}) (LogIn);
+export default connect(mapStateToProps, {login}) (LogIn);
 

@@ -5,6 +5,10 @@ import {
 	USER_LOADED_FAIL,
 	AUTHENTICATED_FAIL,
 	AUTHENTICATED_SUCCESS,
+	PASSWORD_RESET_CONFIRM_FAIL,
+	PASSWORD_RESET_CONFIRM_SUCCESS,
+	PASSWORD_RESET_FAIL,
+	PASSWORD_RESET_SUCCESS,
 	LOGOUT,
 }from '../actions/types';
 
@@ -58,6 +62,14 @@ export default function(state=initialState, action){
 			return {
 				...state,
 				isAuthenticated:false
+			}
+
+		case PASSWORD_RESET_CONFIRM_FAIL:
+		case PASSWORD_RESET_CONFIRM_SUCCESS:
+		case PASSWORD_RESET_FAIL:
+		case PASSWORD_RESET_SUCCESS:
+			return{
+				...state
 			}
 		default:
 			return state

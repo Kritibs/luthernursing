@@ -9,15 +9,17 @@ import LogIn from './components/LogIn.js';
 import Activate from './components/Activate.js';
 import ResetPassword from './components/ResetPassword.js';
 import ResetPasswordConfirm from './components/ResetPasswordConfirm.js';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, useParams} from "react-router-dom";
+import props from 'prop-types';
 import {Provider} from 'react-redux';
 import store from './store';
+import Layout from './rupdate/Layout.js';
 
 function App() {
   return (
     <div className="App">
 	  <Provider store={store}>
-		<ResponsiveAppBar />
+		<Layout />
 		<Routes>
 			<Route path="Home" element={<Home />}/>
 			<Route path="Products" element={<ProductDisplay/>}/>
@@ -26,7 +28,7 @@ function App() {
 			<Route path="SignUp" element={<SignUp/>} />
 			<Route path="LogIn" element={<LogIn />} />
 			<Route path="ResetPassword" element={<ResetPassword />} />
-			<Route path="password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />} />
+			<Route path="password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm/>} />
 			<Route path="activate/:uid/:token" element={<Activate />} />
 		</Routes>
 	 </Provider> 

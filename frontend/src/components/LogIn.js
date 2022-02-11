@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Success from './Success.js';
 import axios from 'axios';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {login} from '../actions/auth';
 

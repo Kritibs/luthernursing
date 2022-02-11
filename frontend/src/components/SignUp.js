@@ -6,6 +6,9 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Success from './Success.js';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {signup} from '../actions/auth';
+import {Link} from 'react-router-dom';
 
 var data={};
 const year_options = [
@@ -20,6 +23,7 @@ class SignUp extends React.Component {
 		super(props);
 		this.state={
 			step:1,
+			accountCreated:false,
 			errors: {},	
 			activeItem:{
 				email:'',
@@ -27,7 +31,7 @@ class SignUp extends React.Component {
 				last_name:'',
 				year:'',
 				password:'',
-				password1:'',
+				re_password:'',
 			},
 			editing:false,
 
@@ -52,20 +56,27 @@ class SignUp extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault()
 		console.log("item", this.state.activeItem)
-			let form_data = new FormData();
-			    form_data.append('email', this.state.activeItem.email);
-			    form_data.append('first_name', this.state.activeItem.first_name)
-			    form_data.append('last_name', this.state.activeItem.last_name)
-			    form_data.append('year', this.state.activeItem.year)
-			    form_data.append('password', this.state.activeItem.password)
-			    let url = "http://127.0.0.1:8000/accounts/add-account"
-			    axios.post(url, form_data, {
-			      headers: {
-				'content-type': 'multipart/form-data'
-			      }
-			    })
-				.catch(err => console.log(err))
+		if (this.validation){
+		this.props.signup(this.state.activeItem.first_name,this.state.activeItem.last_name,this.state.activeItem.email,this.state.activeItem.year,this.state.activeItem.password,this.state.activeItem.re_password);
+
+	      this.setState({
+		accountCreated: true
+	      });
 			this.nextStep();
+		}
+			// let form_data = new FormData();
+			//     form_data.append('email', this.state.activeItem.email);
+			//     form_data.append('first_name', this.state.activeItem.first_name)
+			//     form_data.append('last_name', this.state.activeItem.last_name)
+			//     form_data.append('year', this.state.activeItem.year)
+			//     form_data.append('password', this.state.activeItem.password)
+			//     let url = "http://127.0.0.1:8000/accounts/add-account"
+			//     axios.post(url, form_data, {
+			//       headers: {
+			// 	'content-type': 'multipart/form-data'
+			//       }
+			//     })
+			// 	.catch(err => console.log(err))
 	}
 	  validation=()=>{
 	      let activeItem= this.state.activeItem;
@@ -201,15 +212,20 @@ class SignUp extends React.Component {
 					<TextField
 					required
 					type="password"
-					id="password1"
+					id="re_password"
 					label="Confirm Password"
-					onChange={this.handleChange("password1")}
+					onChange={this.handleChange("re_password")}
 					defaultValue={this.state.activeItem.password1}
 					/>
 					<div>{this.state.errors.password1}</div>
 					</div>
 					<div>
 					<Button onClick={this.handleSubmit} variant="contained">Submit</Button>
+					</div>
+					<div>
+					<p className= 'mt-3'>
+					Already have an account? <Link to='/LogIn'> Sign Up</Link>
+					</p>
 					</div>
 					</Box>
 					</Grid>
@@ -219,5 +235,9 @@ class SignUp extends React.Component {
 		}
 	}
 }
-export default SignUp;
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToProps, {signup}) (SignUp);
+
 

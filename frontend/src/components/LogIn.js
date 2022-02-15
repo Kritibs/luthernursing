@@ -37,8 +37,42 @@ class LogIn extends React.Component {
 	}
 	handleSubmit = e => {
 		e.preventDefault()
-		this.props.login(this.state.activeItem.email,this.state.activeItem.password);
+		if (this.validation()){
+			this.props.login(this.state.activeItem.email,this.state.activeItem.password);
+		}
 	}
+	  validation=()=>{
+	      let activeItem= this.state.activeItem;
+		console.log(activeItem)
+	      let errors = {};
+	      let isValid = true;
+	  
+	  
+	      if (!activeItem["email"]) {
+		isValid = false;
+		errors["email"] = "Please enter your email Address.";
+	      }
+		 if (typeof activeItem["email"] !== "undefined") {
+			  
+			var pattern =  new RegExp(/(\W|^)[\w.+\-]*@luther\.edu(\W|$)/g);
+			if (!pattern.test(activeItem["email"])) {
+			  isValid = false;
+			  errors["email"] = "Please enter valid email address.";
+			}
+		      }
+	      if (!activeItem["password"]) {
+		isValid = false;
+		errors["password"] = "Please enter your Password.";
+	      }
+	  
+	  
+	      this.setState({
+		errors: errors
+	      });
+	  
+	      return isValid;
+	  }
+
 
 
 	render(){

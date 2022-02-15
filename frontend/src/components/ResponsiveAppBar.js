@@ -144,8 +144,8 @@ const ResponsiveAppBar = ({logout,isAuthenticated}) => {
 		      
 			  </React.Fragment>
 			:
-                    <MenuItem onClick={handleCloseNavMenu}>
-			  <a href='#' onClick={logout}>Logout</a>
+                    <MenuItem onClick={logout}>
+		      <Link to="/Home">Logout</Link>
 </MenuItem>}
 
 		      </Typography>

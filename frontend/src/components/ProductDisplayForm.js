@@ -13,6 +13,7 @@ class ProductDisplayForm extends React.Component {
 		super(props);
 		this.state={
 			step:1,
+			errors:{},
 			accounts:[],
 			products:[],
 			activeItem:{
@@ -64,22 +65,60 @@ class ProductDisplayForm extends React.Component {
 	}
 	handleSubmit = e => {
 		e.preventDefault()
-		console.log("item", this.state.activeItem)
+		if (this.validation()){
 		let form_data = new FormData();
 		    form_data.append('product_image', this.state.activeItem.product_image, this.state.activeItem.product_image.name);
 		    form_data.append('product_name', this.state.activeItem.product_name)
 		    form_data.append('product_price', this.state.activeItem.product_price)
 		    form_data.append('pub_date', this.state.activeItem.pub_date)
 		    form_data.append('product_author', this.state.activeItem.product_author)
+
 		    let url = "http://127.0.0.1:8000/products/add-product"
 		    axios.post(url, form_data, {
 		      headers: {
-			'content-type': 'multipart/form-data'
+			'content-type': 'multipart/form-data',
+			'Authorization':`JWT ${localStorage.getItem('access')}`,
+			'Accept':'application/json'
 		      }
 		    })
-			.catch(err => console.log(err))
+		.catch(err=>console.log('Response body', err.response.data))
 		this.nextStep();
+		}
 	}
+	  validation=()=>{
+	      let activeItem= this.state.activeItem;
+	      let errors = {};
+	      let isValid = true;
+	  
+	  
+	      if (!activeItem["product_image"]) {
+		isValid = false;
+		errors["product_image"] = "Please upload an image.";
+	      }
+	      if (!activeItem["product_name"]) {
+		isValid = false;
+		errors["product_name"] = "Please enter the Product Name.";
+	      }
+	      if (!activeItem["product_price"]) {
+		isValid = false;
+		errors["product_price"] = "Please enter the Product Price";
+	      }
+	      if (!activeItem["pub_date"]) {
+		isValid = false;
+		errors["pub_date"] = "Please enter the publish date.";
+	      }
+	      if (!activeItem["product_author"]) {
+		isValid = false;
+		errors["product_author"] = "Please enter the Product Author.";
+	      }
+	  
+	  
+	      this.setState({
+		errors: errors
+	      });
+	  
+	      return isValid;
+	  }
 
 	render(){
 		const{accounts}=this.state;
@@ -115,6 +154,7 @@ class ProductDisplayForm extends React.Component {
 					}}
 					/>
 					</div>
+					<div>{this.state.errors.product_image}</div>
 					<div>
 					<TextField
 					required
@@ -124,6 +164,8 @@ class ProductDisplayForm extends React.Component {
 					defaultValue={this.state.activeItem.product_name}
 					/>
 					</div>
+
+					<div>{this.state.errors.product_name}</div>
 					<div>
 					<TextField
 					required
@@ -134,6 +176,7 @@ class ProductDisplayForm extends React.Component {
 					label="Product Price"
 					/>
 					</div>
+					<div>{this.state.errors.product_pric}</div>
 					<div>
 					<TextField
 					required
@@ -147,6 +190,7 @@ class ProductDisplayForm extends React.Component {
 					}}
 					/>
 					</div>
+					<div>{this.state.errors.pub_date}</div>
 					<div>
 					<TextField
 					required
@@ -163,6 +207,7 @@ class ProductDisplayForm extends React.Component {
 					))}
 					</TextField>
 					</div>
+					<div>{this.state.errors.product_author}</div>
 					<div>
 					<Button onClick={this.handleSubmit} variant="contained">Submit</Button>
 					</div>

@@ -56,30 +56,18 @@ class SignUp extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault()
 		console.log("item", this.state.activeItem)
-		if (this.validation){
-		this.props.signup(this.state.activeItem.first_name,this.state.activeItem.last_name,this.state.activeItem.email,this.state.activeItem.year,this.state.activeItem.password,this.state.activeItem.re_password);
+		if (this.validation()){
+			this.props.signup(this.state.activeItem.first_name,this.state.activeItem.last_name,this.state.activeItem.email,this.state.activeItem.year,this.state.activeItem.password,this.state.activeItem.re_password);
 
-	      this.setState({
-		accountCreated: true
-	      });
-			this.nextStep();
+		      this.setState({
+			accountCreated: true
+		      });
+				this.nextStep();
 		}
-			// let form_data = new FormData();
-			//     form_data.append('email', this.state.activeItem.email);
-			//     form_data.append('first_name', this.state.activeItem.first_name)
-			//     form_data.append('last_name', this.state.activeItem.last_name)
-			//     form_data.append('year', this.state.activeItem.year)
-			//     form_data.append('password', this.state.activeItem.password)
-			//     let url = "http://127.0.0.1:8000/accounts/add-account"
-			//     axios.post(url, form_data, {
-			//       headers: {
-			// 	'content-type': 'multipart/form-data'
-			//       }
-			//     })
-			// 	.catch(err => console.log(err))
 	}
 	  validation=()=>{
 	      let activeItem= this.state.activeItem;
+		console.log(activeItem)
 	      let errors = {};
 	      let isValid = true;
 	  

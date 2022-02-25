@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 
-const ProductDisplay = ({isAuthenticated}) => {
+const ProductDisplay = ({isAuthenticated, is_admin}) => {
 	const [products, setProducts] = useState([]);
 	useEffect(() => {
 		    async function fetchData() {
@@ -31,7 +31,7 @@ const ProductDisplay = ({isAuthenticated}) => {
 			xs={12} sm={6} md={4} lg={4} xl={3}
 			>
 			<ProductCard
-			key={products.id} product_image={products.product_image} product_name={products.product_name}
+			key={products.id} product_id= {products.id} product_image={products.product_image} product_name={products.product_name}
 			product_price={products.product_price}
 			pub_date={products.pub_date}
 			product_author={products.product_author}
@@ -39,7 +39,7 @@ const ProductDisplay = ({isAuthenticated}) => {
 			</Grid> )}
 		</Grid>
 
-		{isAuthenticated &&
+		{isAuthenticated && is_admin &&
 		      <Link to={"/add-products"}>
 		<FontAwesomeIcon icon={	faPlusCircle} size="4x" style={{ color: "#1976d2", position: "absolute", bottom: "0", right: "0", paddingRight :"10px", marginRight:"10px", marginBottom: "10px", paddingBottom :"10px"}}/></Link>
 
@@ -48,7 +48,12 @@ const ProductDisplay = ({isAuthenticated}) => {
 }
 // }
 const mapStateToProps = state => ({
-	isAuthenticated: state.auth.isAuthenticated
+			
+
+	isAuthenticated: state.auth.isAuthenticated,
+	is_admin: state.auth.is_admin,
+
+
 });
 export default connect(mapStateToProps) (ProductDisplay);
 

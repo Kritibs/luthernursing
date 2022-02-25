@@ -20,10 +20,6 @@ const ResetPasswordConfirm = ({reset_password_confirm}) => {
 	const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 	const onSubmit =e => {
 		e.preventDefault()
-		console.log(uid)
-		console.log(token)
-		console.log(new_password)
-		console.log(re_new_password)
 		reset_password_confirm(uid, token, new_password, re_new_password);
 		setRequestSent(true);
 	}

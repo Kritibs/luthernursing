@@ -1,6 +1,7 @@
 import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
+        USER_LOADING,
 	USER_LOADED_SUCCESS,
 	USER_LOADED_FAIL,
 	AUTHENTICATED_FAIL,
@@ -20,7 +21,10 @@ const initialState={
 	access:localStorage.getItem('access'),
 	refresh:localStorage.getItem('refresh'),
 	isAuthenticated:null,
-	user:null
+	isLoading: true,
+	user:null,
+	errormsg:'',
+	is_admin:'',
 };
 
 export default function(state=initialState, action){
@@ -38,26 +42,68 @@ export default function(state=initialState, action){
 				...state,
 				isAuthenticated:false
 			}
+		case USER_LOADING:
+			return {
+				...state,
+				isLoading: true
+		      };
 		case LOGIN_SUCCESS:
 			localStorage.setItem('access', payload.access);
 			return{
 				...state,
 				isAuthenticated: true, 
+				isLoading: false,
 				access: payload.access,
 				refresh: payload.refresh
 			}
 		case USER_LOADED_SUCCESS:
+			if (payload.id===1){
 			return{
 				...state,
-				user:payload
+				user:payload,
+				isLoading: false,
+				is_admin: true
 			}
+			}
+				else{
+			return{
+				...state,
+				user:payload,
+				isLoading: false,
+				is_admin:false,
+			}
+
+				}
 		case USER_LOADED_FAIL:
 			return{
 				...state,
-				user:null
+				user:null,
+				isLoading: false,
 			}
 		case LOGIN_FAIL:
+			localStorage.removeItem('access');
+			localStorage.removeItem('refresh');
+			return{
+				...state,
+				access:null,
+				refresh:null,
+				isAuthenticated:false,
+				isLoading: false,
+				user:null,
+				errormsg:"Invalid Credentials. Please try again!",
+			}
 		case SIGNUP_FAIL:
+			localStorage.removeItem('access');
+			localStorage.removeItem('refresh');
+			return{
+				...state,
+				access:null,
+				refresh:null,
+				isAuthenticated:false,
+				isLoading: false,
+				user:null,
+				errormsg:"Something Went Wrong. Please Try Again!",
+			}
 		case LOGOUT:
 			localStorage.removeItem('access');
 			localStorage.removeItem('refresh');
@@ -66,13 +112,15 @@ export default function(state=initialState, action){
 				access:null,
 				refresh:null,
 				isAuthenticated:false,
+				isLoading: false,
 				user:null
 			}
 
 		case AUTHENTICATED_FAIL:
 			return {
 				...state,
-				isAuthenticated:false
+				isAuthenticated:false,
+				isLoading: false,
 			}
 
 		case PASSWORD_RESET_CONFIRM_FAIL:
@@ -82,7 +130,8 @@ export default function(state=initialState, action){
 		case ACTIVATION_FAIL:
 		case ACTIVATION_SUCCESS:
 			return{
-				...state
+				...state,
+				isLoading: false,
 			}
 		default:
 			return state

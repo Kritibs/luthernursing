@@ -16,6 +16,7 @@ class ProductDisplayForm extends React.Component {
 			errors:{},
 			accounts:[],
 			products:[],
+			errormsg:'',
 			activeItem:{
 				product_image:'',
 				product_name:'',
@@ -81,7 +82,11 @@ class ProductDisplayForm extends React.Component {
 			'Accept':'application/json'
 		      }
 		    })
-		.catch(err=>console.log('Response body', err.response.data))
+		.catch(err=>
+		this.setState({
+			errormsg:err.response.data.detail
+		})
+		);
 		this.nextStep();
 		}
 	}
@@ -215,7 +220,7 @@ class ProductDisplayForm extends React.Component {
 					</Grid>
 				);
 			case 2:
-				return (<Success />);
+				return (<Success message={this.state.errormsg} />);
 		}
 	}
 }

@@ -2,6 +2,7 @@ import {
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	USER_LOADED_SUCCESS,
+        USER_LOADING,
 	USER_LOADED_FAIL,
 	AUTHENTICATED_FAIL,
 	AUTHENTICATED_SUCCESS,
@@ -57,6 +58,7 @@ export const checkAuthenticated= () => async dispatch => {
 
 export const load_user =() => async dispatch => {
 	if (localStorage.getItem('access')){
+		dispatch({ type: USER_LOADING });
 		const config={
 			headers:{
 			'Content-Type':'application/json',

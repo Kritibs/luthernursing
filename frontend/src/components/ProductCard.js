@@ -1,18 +1,23 @@
 import * as React from 'react';
+import {Link, Navigate} from 'react-router-dom';
 import Card from '@mui/material/Card';
+import {connect} from 'react-redux';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen} from '@fortawesome/free-solid-svg-icons';
+import { faTrash} from '@fortawesome/free-solid-svg-icons';
 import Typography from '@mui/material/Typography';
 
-export default function ProductCard({product_image, product_name, product_price, pub_date, product_author}) {
+const ProductCard = ({isAuthenticated, is_admin, product_id,product_image, product_name, product_price, pub_date, product_author}) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image={"http://127.0.0.1:8000"+product_image}
+        image={`${process.env.REACT_APP_API_URL}${product_image}`}
         alt={product_name}
       />
       <CardContent>
@@ -28,10 +33,28 @@ export default function ProductCard({product_image, product_name, product_price,
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+		{isAuthenticated && is_admin &&
+			<>
+ <Link to={"/edit-product/"+ product_id + '/'}>
+		<FontAwesomeIcon icon={	faPen} size="1x" style={{ color: "#1976d2"}}/>
+	</Link>
+
+ <Link to={"/delete-product/"+ product_id + '/'}>
+		<FontAwesomeIcon icon={	faTrash} size="1x" style={{ color: "#1976d2"}}/></Link>
+			</>
+		}
       </CardActions>
     </Card>
   );
 }
+
+const mapStateToProps = state => ({
+			
+
+	isAuthenticated: state.auth.isAuthenticated,
+	is_admin: state.auth.is_admin,
+
+
+});
+export default connect(mapStateToProps) (ProductCard);
 

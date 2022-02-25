@@ -9,6 +9,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('products/', include('products.urls')),
+    path('blogs/', include('blogs.urls')),
     path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
     re_path(r'^auth/', include('djoser.urls')),

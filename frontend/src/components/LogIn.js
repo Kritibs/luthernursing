@@ -38,7 +38,7 @@ class LogIn extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault()
 		if (this.validation()){
-			this.props.login(this.state.activeItem.email,this.state.activeItem.password);
+			this.props.login(this.state.activeItem.email,this.state.activeItem.password)
 		}
 	}
 	  validation=()=>{
@@ -78,9 +78,12 @@ class LogIn extends React.Component {
 	render(){
 	if (this.props.isAuthenticated){
 
-		window.location.href='http://localhost:3000/Home'
-		
+		window.location.href=`${process.env.REACT_APP_API_URL}/Home`
+	      
 	}
+		if (this.props.errormsg){
+				return (<Success message={this.props.errormsg} />);
+		}
 				return (
 					<Grid
 					container
@@ -137,7 +140,8 @@ class LogIn extends React.Component {
 		}
 }
 const mapStateToProps = state => ({
-	isAuthenticated: state.auth.isAuthenticated
+	isAuthenticated: state.auth.isAuthenticated,
+	errormsg: state.auth.errormsg
 });
 export default connect(mapStateToProps, {login}) (LogIn);
 

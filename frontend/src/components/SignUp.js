@@ -219,12 +219,13 @@ class SignUp extends React.Component {
 					</Grid>
 				);
 			case 2:
-				return (<Success />);
-		}
+				return (<Success message={this.props.errormsg} />);
+	}
 	}
 }
 const mapStateToProps = state => ({
-	isAuthenticated: state.auth.isAuthenticated
+	isAuthenticated: state.auth.isAuthenticated,
+	errormsg: state.auth.errormsg,
 });
 export default connect(mapStateToProps, {signup}) (SignUp);
 

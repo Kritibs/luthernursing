@@ -17,7 +17,7 @@ const Activate= ({verify}) => {
 	}
 	if (verified){
 
-		window.location.href='http://localhost:3000/Home'
+		window.location.href=`${process.env.REACT_APP_API_URL}/Home`
 		
 	}
 

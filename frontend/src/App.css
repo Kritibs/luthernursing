@@ -17,3 +17,12 @@
   color: #61dafb;
 }
 
+a {
+  color: black;
+}
+a:hover {
+   color: #00F
+}
+a:link {
+  text-decoration: none;
+}

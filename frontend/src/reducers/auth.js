@@ -102,7 +102,7 @@ export default function(state=initialState, action){
 				isAuthenticated:false,
 				isLoading: false,
 				user:null,
-				errormsg:"Something Went Wrong. Please Try Again!",
+				errormsg:"Something Went Wrong. Make sure password is strong and please Try Again!",
 			}
 		case LOGOUT:
 			localStorage.removeItem('access');
@@ -124,6 +124,12 @@ export default function(state=initialState, action){
 			}
 
 		case PASSWORD_RESET_CONFIRM_FAIL:
+			return{
+				...state,
+				isLoading: false,
+				errormsg:"Something Went Wrong. Make sure password is strong and please Try Again!",
+			}
+
 		case PASSWORD_RESET_CONFIRM_SUCCESS:
 		case PASSWORD_RESET_FAIL:
 		case PASSWORD_RESET_SUCCESS:

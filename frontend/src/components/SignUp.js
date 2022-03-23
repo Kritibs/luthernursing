@@ -219,7 +219,7 @@ class SignUp extends React.Component {
 					</Grid>
 				);
 			case 2:
-				return (<Success message={this.props.errormsg} />);
+				return (<Success message={this.props.errormsg} link={"SignUp"}/>);
 	}
 	}
 }

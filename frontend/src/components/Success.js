@@ -7,7 +7,12 @@ class Success extends React.Component{
 	render(){
   return (
 	  this.props.message?
+	  <>
 	  <h1> {this.props.message} </h1>
+
+	 <Link to={"/" + this.props.link}>
+			Go Back</Link>
+	  </>
 	:
 	  
 	  <>

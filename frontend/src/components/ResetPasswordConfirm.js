@@ -25,7 +25,7 @@ const ResetPasswordConfirm = ({reset_password_confirm}) => {
 	}
 	if (requestSent){
 
-		window.location.href='http://localhost:3000/Home'
+		window.location.href=`${process.env.REACT_APP_API_URL}/Home`
 		
 	}
 

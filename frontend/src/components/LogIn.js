@@ -82,7 +82,7 @@ class LogIn extends React.Component {
 	      
 	}
 		if (this.props.errormsg){
-				return (<Success message={this.props.errormsg} />);
+				return (<Success message={this.props.errormsg} link={"LogIn"} />);
 		}
 				return (
 					<Grid

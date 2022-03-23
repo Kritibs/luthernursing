@@ -11,7 +11,7 @@ Django==3.2.9
 django-cors-headers==3.10.0
 django-templated-mail==1.1.1
 djangorestframework==3.12.4
-rest_framework_jwt
+djangorestframework-jwt
 djangorestframework-simplejwt==4.3.0
 djoser==2.1.0
 gunicorn==20.1.0

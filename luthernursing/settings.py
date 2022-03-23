@@ -31,7 +31,8 @@ SECRET_KEY = 'django-insecure-exw4my3sgq_x3&=k+3%gn-uaex29lb-slql+x_7f++nag8rr$o
 DEBUG = True
 
 ALLOWED_HOSTS = [
-        luthernursing.herokuapp.com
+        '*',
+        'luthernursing.herokuapp.com',
         ]
 
 

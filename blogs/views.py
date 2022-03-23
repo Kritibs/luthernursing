@@ -9,8 +9,6 @@ from rest_framework.permissions import IsAdminUser
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication, BasicAuthentication
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
 User = get_user_model()
 

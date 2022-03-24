@@ -13,7 +13,6 @@ const Layout = (props) => {
 		<div> 
 		<ResponsiveAppBar />
 		{props.children}
-		<Footer />
 		</div>
 	);
 };

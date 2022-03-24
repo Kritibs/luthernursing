@@ -24,6 +24,7 @@ import {Provider, connect} from 'react-redux';
 import store from './store';
 import Layout from './rupdate/Layout.js';
 import RequireAuth from './privateroutes/RequireAuth.js';
+import Footer from './components/Footer.js';
 
 function App() {
   return (
@@ -85,6 +86,8 @@ function App() {
 			<Route path="password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm/>} />
 			<Route path="activate/:uid/:token" element={<Activate />} />
 		</Routes>
+
+		<Footer />
 	 </Provider> 
     </div>
   );

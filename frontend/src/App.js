@@ -31,6 +31,7 @@ function App() {
 	  <Provider store={store}>
 		<Layout />
 		<Routes>
+			<Route exact path="/" element={<BlogDisplay/>}/>
 			<Route path="Home" element={<BlogDisplay/>}/>
 			<Route path="Products" element={<ProductDisplay/>}/>
 			<Route path="blog-detail/:id" element={<BlogDetail/>}/>

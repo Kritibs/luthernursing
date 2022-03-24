@@ -39,7 +39,7 @@ class ProductDisplayForm extends React.Component {
 		});
 	}
 	async componentDidMount(){
-		await fetch('http://127.0.0.1:8000/accounts/accounts-list')
+		await fetch(`${process.env.REACT_APP_API_URL}/accounts/accounts-list`)
 			.then(res => res.json())
 			.then(data => {
 				this.setState({
@@ -74,7 +74,7 @@ class ProductDisplayForm extends React.Component {
 		    form_data.append('pub_date', this.state.activeItem.pub_date)
 		    form_data.append('product_author', this.state.activeItem.product_author)
 
-		    let url = "http://127.0.0.1:8000/products/add-product"
+		    let url = `${process.env.REACT_APP_API_URL}/products/add-product`
 		    axios.post(url, form_data, {
 		      headers: {
 			'content-type': 'multipart/form-data',

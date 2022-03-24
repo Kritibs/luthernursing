@@ -12,7 +12,7 @@ const ProductDisplay = ({isAuthenticated, is_admin}) => {
 	const [products, setProducts] = useState([]);
 	useEffect(() => {
 		    async function fetchData() {
-			const res = await fetch('http://127.0.0.1:8000/products/products-list')
+			const res = await fetch(`${process.env.REACT_APP_API_URL}/products/products-list`)
 		      res
 			.json()
 		.then(res => setProducts(res))

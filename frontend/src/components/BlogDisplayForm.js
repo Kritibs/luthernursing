@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Success from './Success.js';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import axios from 'axios';
 
 var data={};
@@ -125,6 +126,7 @@ class BlogDisplayForm extends React.Component {
 					required
 					id="blog_content"
 					onChange={this.handleChange("blog_content")}
+					multiline
 					defaultValue={this.state.activeItem.blog_price}
 					label="Blog Content"
 					/>

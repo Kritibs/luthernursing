@@ -50,7 +50,7 @@ const ResponsiveAppBar = ({logout,isAuthenticated}) => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-	  LUTHER NURSING
+	  NURSEHUB
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -98,7 +98,7 @@ const ResponsiveAppBar = ({logout,isAuthenticated}) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-	  LUTHER NURSING
+	  NURSEHUB
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

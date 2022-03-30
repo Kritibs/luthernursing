@@ -31,6 +31,8 @@ function App() {
     <div className="App">
 	  <Provider store={store}>
 		<Layout />
+	  
+	  <div className="content">
 		<Routes>
 			<Route exact path="/" element={<BlogDisplay/>}/>
 			<Route path="Home" element={<BlogDisplay/>}/>
@@ -86,8 +88,10 @@ function App() {
 			<Route path="password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm/>} />
 			<Route path="activate/:uid/:token" element={<Activate />} />
 		</Routes>
-
+	  </div>
+	  <div className="footer">
 		<Footer />
+	  </div>
 	 </Provider> 
     </div>
   );

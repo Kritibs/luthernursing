@@ -153,18 +153,18 @@ STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-#"http://localhost:3000",
-#"http://localhost:8000",
+"http://localhost:3000",
+"http://localhost:8000",
 #"http://127.0.0.1:8000",
 #"http://127.0.0.1:3000",
-"https://luthernursing.herokuapp.com/"
+"https://luthernursing.herokuapp.com"
 ]
 CORS_ORIGIN_WHITELIST=[
         #"http://localhost:3000/add-products",
         #"http://localhost:3000/add-accounts",
-        #"http://localhost:3000",
-        #"http://localhost:8000",
-        "https://luthernursing.herokuapp.com/"
+        "http://localhost:3000",
+        "http://localhost:8000",
+        "https://luthernursing.herokuapp.com"
         ]
 AUTH_USER_MODEL = 'accounts.MyUser'
 

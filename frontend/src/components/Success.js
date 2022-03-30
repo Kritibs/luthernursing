@@ -10,7 +10,7 @@ class Success extends React.Component{
 	  <>
 	  <h1> {this.props.message} </h1>
 
-	 <Link to={"/" + this.props.link}>
+	 <Link to={"/" + this.props.link} onClick={() => window.location.reload()}>
 			Go Back</Link>
 	  </>
 	:

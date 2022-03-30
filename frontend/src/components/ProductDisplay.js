@@ -22,6 +22,18 @@ const ProductDisplay = ({isAuthenticated, is_admin}) => {
 	    fetchData();
   },[]);
 	return (
+		<>
+		<div>
+		{isAuthenticated && is_admin &&
+			<>
+			<h3>Add Blogs</h3>
+		      <Link to={"/add-products"}>
+		<FontAwesomeIcon icon={	faPlusCircle} size="4x" style={{ color: "#1976d2"}}/></Link>
+			<br/> <br/>
+			<hr/>
+</>
+	}
+		</div>
 		<div>
 		<Grid container spacing={10}
 		style={{padding: '24px'}}
@@ -38,13 +50,9 @@ const ProductDisplay = ({isAuthenticated, is_admin}) => {
 			/>
 			</Grid> )}
 		</Grid>
-
-		{isAuthenticated && is_admin &&
-		      <Link to={"/add-products"}>
-		<FontAwesomeIcon icon={	faPlusCircle} size="4x" style={{ color: "#1976d2", position: "absolute", bottom: "0", right: "0", paddingRight :"10px", marginRight:"10px", marginBottom: "10px", paddingBottom :"10px"}}/></Link>
-
-	}
-		</div>); 
+		</div>
+		</>
+	); 
 }
 // }
 const mapStateToProps = state => ({

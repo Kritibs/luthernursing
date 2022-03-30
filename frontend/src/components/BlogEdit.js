@@ -124,6 +124,7 @@ const BlogEdit= () => {
 					name="blog_content"
 					onChange={handleChange}
 					value={formData.blog_content}
+					multiline
 					label="Blog Content"
 					/>
 					</div>

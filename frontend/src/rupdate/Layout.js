@@ -10,7 +10,7 @@ const Layout = (props) => {
 		props.load_user();
 	}, []);
 	return (
-		<div> 
+		<div className="header"> 
 		<ResponsiveAppBar />
 		{props.children}
 		</div>

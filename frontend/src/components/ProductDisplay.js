@@ -26,7 +26,7 @@ const ProductDisplay = ({isAuthenticated, is_admin}) => {
 		<div>
 		{isAuthenticated && is_admin &&
 			<>
-			<h3>Add Blogs</h3>
+			<h3>Add Products</h3>
 		      <Link to={"/add-products"}>
 		<FontAwesomeIcon icon={	faPlusCircle} size="4x" style={{ color: "#1976d2"}}/></Link>
 			<br/> <br/>

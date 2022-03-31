@@ -17,7 +17,7 @@ const ProductCard = ({isAuthenticated, is_admin, product_id,product_image, produ
       <CardMedia
         component="img"
         height="140"
-        image={`${process.env.REACT_APP_API_URL}${product_image}`}
+        image={`${product_image}`}
         alt={product_name}
       />
       <CardContent>

@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import moment from 'moment';
 import Typography from '@mui/material/Typography';
 
 const BlogCard = ({isAuthenticated, is_admin, blog_id,blog_title, blog_content, pub_date}) => {
@@ -14,7 +15,7 @@ const BlogCard = ({isAuthenticated, is_admin, blog_id,blog_title, blog_content, 
 
 			    <div>
 				      <h2>{blog_title}</h2>
-				      <h5><span className="glyphicon glyphicon-time"></span> Post by Admin, {pub_date}.</h5>
+				      <h5><span className="glyphicon glyphicon-time"></span> Post by Admin, { moment(pub_date).format('MM-DD-YYYY')}.</h5>
 				      <p>{blog_content}</p>
 
 

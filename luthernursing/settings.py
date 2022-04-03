@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from os import getenv
 import dj_database_url
 import django_heroku
 from dotenv import load_dotenv
@@ -197,8 +198,8 @@ AUTHENTICATION_BACKENDS=(
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER=os.environ["EMAIL_HOST_USER"]
-EMAIL_HOST_PASSWORD =os.environ["EMAIL_HOST_PASSWORD"]
+EMAIL_HOST = getenv('EMAIL_HOST', 'localhost')
+EMAIL_HOST_PASSWORD =getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS=True
 
 

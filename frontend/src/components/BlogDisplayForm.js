@@ -49,7 +49,7 @@ class BlogDisplayForm extends React.Component {
 		    form_data.append('blog_title', this.state.activeItem.blog_title)
 		    form_data.append('blog_content', this.state.activeItem.blog_content)
 
-		    let url = "http://127.0.0.1:8000/blogs/add-blog"
+		    let url = `${process.env.REACT_APP_API_URL}/blogs/add-blog`
 		    axios.post(url, form_data, {
 		      headers: {
 			'content-type': 'multipart/form-data',

@@ -20,6 +20,8 @@ from datetime import timedelta
 import cloudinary
 import cloudinary_storage
 from decouple import config
+import environ
+
 env = environ.Env()
 environ.Env.read_env()
 

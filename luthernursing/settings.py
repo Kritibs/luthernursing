@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import environ
 from pathlib import Path
 import os
 import dj_database_url
@@ -19,7 +20,6 @@ from datetime import timedelta
 import cloudinary
 import cloudinary_storage
 from decouple import config
-import environ
 
 env = environ.Env()
 environ.Env.read_env()

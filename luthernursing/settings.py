@@ -20,7 +20,8 @@ from datetime import timedelta
 import cloudinary
 import cloudinary_storage
 from decouple import config
-
+env = environ.Env()
+environ.Env.read_env()
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -198,8 +199,8 @@ AUTHENTICATION_BACKENDS=(
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST = getenv('EMAIL_HOST', 'localhost')
-EMAIL_HOST_PASSWORD =getenv("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS=True
 
 

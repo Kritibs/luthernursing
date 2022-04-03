@@ -146,12 +146,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 CLOUDINARY_STORAGE = {
-        # 'CLOUD_NAME': config('CLOUD_NAME', default=""),
-        # 'API_KEY': config('API_KEY', default=""),
-        # 'API_SECRET': config('API_SECRET', default=""),
-    'CLOUD_NAME': "dooo2eu2z",
-    'API_KEY': "744834844785769",
-    'API_SECRET': "hLk__RQSokzoP1LuCVeewlbSoSg",
+        'CLOUD_NAME': config('CLOUD_NAME', default=""),
+        'API_KEY': config('API_KEY', default=""),
+        'API_SECRET': config('API_SECRET', default=""),
+    # 'CLOUD_NAME': "dooo2eu2z",
+    # 'API_KEY': "744834844785769",
+    # 'API_SECRET': "hLk__RQSokzoP1LuCVeewlbSoSg",
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

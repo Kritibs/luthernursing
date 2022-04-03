@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import environ
 from pathlib import Path
 import os
 import dj_database_url
@@ -19,10 +18,6 @@ from dotenv import load_dotenv
 from datetime import timedelta
 import cloudinary
 import cloudinary_storage
-from decouple import config
-
-env = environ.Env()
-environ.Env.read_env()
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -178,13 +173,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
 "http://localhost:3000",
 "http://localhost:8000",
-#"http://127.0.0.1:8000",
-#"http://127.0.0.1:3000",
 "https://luthernursing.herokuapp.com"
 ]
 CORS_ORIGIN_WHITELIST=[
-        #"http://localhost:3000/add-products",
-        #"http://localhost:3000/add-accounts",
         "http://localhost:3000",
         "http://localhost:8000",
         "https://luthernursing.herokuapp.com"
@@ -200,7 +191,7 @@ AUTHENTICATION_BACKENDS=(
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER = "luthernursingclub@gmail.com"
+EMAIL_HOST_USER ='luthernursingclub@gmail.com'
 EMAIL_HOST_PASSWORD = 'ykskkuuzgozskpwm'
 EMAIL_USE_TLS=True
 

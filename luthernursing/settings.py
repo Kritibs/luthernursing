@@ -16,8 +16,6 @@ import dj_database_url
 import django_heroku
 from dotenv import load_dotenv
 from datetime import timedelta
-import cloudinary
-import cloudinary_storage
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -55,8 +53,6 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework',
     'rest_framework_simplejwt',
-    'cloudinary',
-    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -143,14 +139,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': "dooo2eu2z",
-    'API_KEY': "744834844785769",
-    'API_SECRET': "hLk__RQSokzoP1LuCVeewlbSoSg",
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 
@@ -173,9 +161,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
 "http://localhost:3000",
 "http://localhost:8000",
+#"http://127.0.0.1:8000",
+#"http://127.0.0.1:3000",
 "https://luthernursing.herokuapp.com"
 ]
 CORS_ORIGIN_WHITELIST=[
+        #"http://localhost:3000/add-products",
+        #"http://localhost:3000/add-accounts",
         "http://localhost:3000",
         "http://localhost:8000",
         "https://luthernursing.herokuapp.com"
@@ -191,7 +183,7 @@ AUTHENTICATION_BACKENDS=(
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER ='luthernursingclub@gmail.com'
+EMAIL_HOST_USER='luthernursingclub@gmail.com'
 EMAIL_HOST_PASSWORD = 'ykskkuuzgozskpwm'
 EMAIL_USE_TLS=True
 

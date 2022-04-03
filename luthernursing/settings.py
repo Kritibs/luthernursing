@@ -18,6 +18,8 @@ from dotenv import load_dotenv
 from datetime import timedelta
 import cloudinary
 import cloudinary_storage
+from decouple import config
+
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -144,9 +146,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv("CLOUD_NAME"),
-    'API_KEY': os.getenv("API_KEY"),
-    'API_SECRET': os.getenv("API_SECRET"),
+        'CLOUD_NAME': config('CLOUD_NAME', default=""),
+        'API_KEY': config('API_KEY', default=""),
+        'API_SECRET': config('API_SECRET', default=""),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

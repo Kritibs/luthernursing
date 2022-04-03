@@ -16,6 +16,8 @@ import dj_database_url
 import django_heroku
 from dotenv import load_dotenv
 from datetime import timedelta
+import cloudinary
+import cloudinary_storage
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -138,6 +140,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': "dooo2eu2z",
+    'API_KEY': "744834844785769",
+    'API_SECRET': "hLk__RQSokzoP1LuCVeewlbSoSg",
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'

@@ -1,10 +1,8 @@
 import React , {useState} from 'react';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import {Redirect, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {verify} from '../actions/auth';
 

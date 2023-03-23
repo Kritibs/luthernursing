@@ -1,11 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Success from './Success.js';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {login} from '../actions/auth';
@@ -54,7 +52,7 @@ class LogIn extends React.Component {
 	      }
 		 if (typeof activeItem["email"] !== "undefined") {
 			  
-			var pattern =  new RegExp(/(\W|^)[\w.+\-]*@luther\.edu(\W|$)/g);
+			var pattern =  new RegExp(/(\W|^)[\w.+-]*@luther\.edu(\W|$)/g);
 			if (!pattern.test(activeItem["email"])) {
 			  isValid = false;
 			  errors["email"] = "Please enter valid email address.";

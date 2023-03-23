@@ -1,6 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import ProductCard from './ProductCard.js';
-import Grid from '@mui/material/Grid';
+import React from 'react';
 
 class Home extends React.Component {
 	constructor(props){

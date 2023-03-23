@@ -1,17 +1,10 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {connect} from 'react-redux';
 import { faPen} from '@fortawesome/free-solid-svg-icons';
 import { faTrash} from '@fortawesome/free-solid-svg-icons';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { useLocation } from 'react-router-dom';
-import BlogCard from './BlogCard.js';
 
 const BlogDetail = ({isAuthenticated, is_admin}) => {
 	const { blog_id,blog_title, blog_content, pub_date}=useLocation().state;

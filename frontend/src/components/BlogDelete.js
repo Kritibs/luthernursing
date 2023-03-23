@@ -1,20 +1,14 @@
-import React , {useState, useEffect} from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import React from 'react';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import {Redirect, useParams} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {reset_password_confirm } from '../actions/auth';
-import Success from './Success.js';
+import { useParams} from 'react-router-dom';
 import axios from 'axios';
 
 const BlogDelete= () => {
 	const {id}= useParams();
 
-	const [errors, setErrors] = useState({});
+	// const [errors, setErrors] = useState({});
 	const handleSubmit =e => {
 		e.preventDefault()
 		    let url = `${process.env.REACT_APP_API_URL}/blogs/delete-blog/${id}/`
@@ -25,8 +19,11 @@ const BlogDelete= () => {
 			'Accept':'application/json'
 		      }
 		    })
-		.catch(err=>
-			setErrors({['errormsg']:err.response.data.detail})
+		.catch(err=>{
+			// setErrors({['errormsg']:err.response.data.detail})
+			console.log(err);
+
+		}
 		);
 		window.location.href=`${process.env.REACT_APP_API_URL}/Blogs`
 	}

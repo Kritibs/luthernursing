@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {Link, Navigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Card from '@mui/material/Card';
 import {connect} from 'react-redux';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen} from '@fortawesome/free-solid-svg-icons';
 import { faTrash} from '@fortawesome/free-solid-svg-icons';
